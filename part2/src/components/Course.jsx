@@ -1,30 +1,29 @@
+
 const Header = ({name}) => {
   return <h2>{name}</h2>
 }
-
-const Content = ({ parts }) => {
+const Content = ({parts}) => {
   return (
     <div>
       {parts.map(part => (
-        <Part key={part.id} part={part}/>
+        <Part key={part.id} part={part} />
       ))}
     </div>
   )
 }
-
-const Part = ({part}) => {
+const Part = ({ part }) => {
   return (
-    <p>{part.name} {part.exercises}</p>
+    <p>
+      {part.name} {part.exercises}
+    </p>
   )
 }
-
-const Total = ({ parts }) => {
-  let total = 0
-  parts.forEach(part => {total += part.exercises})
+const Total = ({parts}) => {
+  const total = parts.reduce((sum, part) => {
+    return sum + part.exercises
+  }, 0)
   return <p>total of {total} exercises</p>
 }
-
-
 const Course = ({course}) => {
   return (
     <div>
@@ -34,5 +33,4 @@ const Course = ({course}) => {
     </div>
   )
 }
-
 export default Course
